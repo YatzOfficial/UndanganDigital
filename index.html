@@ -110,6 +110,11 @@ body{background:var(--dark);font-family:var(--ff-b);color:var(--cream);overflow-
 .particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:fup linear infinite;}
 @keyframes fup{0%{opacity:0;transform:translateY(0) scale(0);}10%{opacity:0.5;}90%{opacity:0.15;}100%{opacity:0;transform:translateY(-100vh) scale(1.5);}}
 
+/* TOMBOL MUSIK */
+#music-btn{position:fixed;bottom:20px;left:20px;z-index:8000;display:none;background:rgba(45,8,14,0.92);backdrop-filter:blur(14px);border:1px solid rgba(201,169,110,0.35);border-radius:50%;width:42px;height:42px;cursor:pointer;transition:all 0.3s;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+#music-btn.visible{display:flex;}
+#music-btn:hover{border-color:var(--gold);background:rgba(74,14,23,0.95);}
+
 /* PANEL ADMIN FAB */
 #admin-fab{position:fixed;bottom:20px;right:20px;z-index:8000;display:none;background:rgba(45,8,14,0.92);backdrop-filter:blur(14px);border:1px solid rgba(201,169,110,0.35);border-radius:40px;padding:11px 20px;cursor:pointer;transition:all 0.3s;font-family:var(--ff-b);font-size:9px;letter-spacing:2px;color:var(--gold);align-items:center;gap:8px;}
 #admin-fab:hover{border-color:var(--gold);background:rgba(74,14,23,0.95);}
@@ -304,6 +309,8 @@ body{background:var(--dark);font-family:var(--ff-b);color:var(--cream);overflow-
 <div id="undangan">
   <div id="particles"></div>
   <div id="admin-fab" onclick="openAdmin()">⚙ PANEL ADMIN</div>
+  
+  <div id="music-btn" onclick="toggleMusic()" title="Putar/Jeda Musik">🎵</div>
 
   <div id="admin-panel">
     <div class="ph"><h2>✦ Panel Admin</h2><button class="ph-close" onclick="closeAdmin()">✕</button></div>
@@ -585,11 +592,27 @@ function initInvitation(){
   document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
   setInterval(tick,1000);tick();
   if(isAdmin) gi('admin-fab').classList.add('visible');
-  // Autoplay musik
+  
+  // Autoplay musik yang sudah disempurnakan
   if(C.musik_url){
     const audio=gi('bg-audio');
-    audio.play().then(()=>{musicPlaying=true;}).catch(()=>{
-      const tryPlay=()=>{audio.play().then(()=>{musicPlaying=true;}).catch(()=>{});document.removeEventListener('touchstart',tryPlay);document.removeEventListener('click',tryPlay);};
+    const mBtn=gi('music-btn');
+    mBtn.classList.add('visible');
+    
+    audio.play().then(()=>{
+      musicPlaying=true;
+      mBtn.textContent='🎵';
+    }).catch(()=>{
+      // Jika diblokir oleh browser HP, tampilkan icon mute dulu
+      mBtn.textContent='🔇';
+      const tryPlay=()=>{
+        audio.play().then(()=>{
+          musicPlaying=true;
+          mBtn.textContent='🎵';
+        }).catch(()=>{});
+        document.removeEventListener('touchstart',tryPlay);
+        document.removeEventListener('click',tryPlay);
+      };
       document.addEventListener('touchstart',tryPlay,{once:true,passive:true});
       document.addEventListener('click',tryPlay,{once:true});
     });
@@ -620,7 +643,6 @@ function prosesMusikLokal(e){
   const file = e.target.files[0];
   if(!file) return;
   
-  // Mencegah file terlalu besar (Maksimal 5MB)
   if(file.size > 10 * 1024 * 1024){
     toast('⚠ Ukuran musik maksimal 10MB agar web tidak berat!');
     return;
@@ -633,6 +655,19 @@ function prosesMusikLokal(e){
     toast('✓ Lagu berhasil ditambahkan!');
   };
   reader.readAsDataURL(file);
+}
+
+// FUNGSI BARU UNTUK TOMBOL MUSIK
+function toggleMusic(){
+  const audio = gi('bg-audio');
+  const btn = gi('music-btn');
+  if(audio.paused){
+    audio.play();
+    btn.textContent = '🎵';
+  } else {
+    audio.pause();
+    btn.textContent = '🔇';
+  }
 }
 
 function saveAll(){
