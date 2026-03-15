@@ -88,7 +88,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .nc-skip:hover{color:var(--txt-soft);}
 
 /* ======= SAMPUL ======= */
-#sampul-page{position:fixed;inset:0;z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:url('bg.webp') center/cover no-repeat;transition:opacity 1s;}
+#sampul-page{position:fixed;inset:0;z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:var(--cream2);transition:opacity 1s;}
 #sampul-page::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--gold-faint) 1px,transparent 1px);background-size:28px 28px;opacity:0.5;}
 /* Flower decorations on sampul */
 #sampul-page::after{content:'';position:absolute;top:-20px;right:-30px;width:260px;height:260px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
@@ -228,8 +228,9 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 @keyframes sdot{0%,100%{transform:translateY(0);opacity:1;}62%{transform:translateY(10px);opacity:0;}}
 
 /* ======= SECTIONS ======= */
-.sec{padding:80px 48px;text-align:center;position:relative;background:url('bg.webp') center/cover no-repeat;}
-.sec.alt{background:url('bg.webp') center/cover no-repeat;}
+.sec{padding:80px 48px;text-align:center;position:relative;background:var(--cream);}
+.sec.alt{background:var(--cream2);}
+.sec-mempelai{background:url('bg.webp') center/cover no-repeat !important;}
 .sec.alt::before,.sec.alt::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-line),transparent);}
 .sec.alt::before{top:0;}.sec.alt::after{bottom:0;}
 /* Floral section dividers */
@@ -332,7 +333,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .rsvp-btn:active{transform:scale(0.98);}
 
 /* FOOTER */
-.ft{background:url('bg.webp') center/cover no-repeat;padding:64px 44px 50px;text-align:center;border-top:1px solid var(--gold-line);position:relative;overflow:hidden;}
+.ft{background:var(--cream3);padding:64px 44px 50px;text-align:center;border-top:1px solid var(--gold-line);position:relative;overflow:hidden;}
 .ft::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:180px;height:2px;background:linear-gradient(to right,transparent,var(--gold2),transparent);}
 .ft-flower-tr{display:none;}
 .ft-flower-lb{display:none;}
@@ -556,7 +557,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       <div class="orn reveal r3"><div class="orn-diam"></div></div>
     </section>
 
-    <section class="sec alt">
+    <section class="sec alt sec-mempelai">
       <div class="sec-flower-l"></div>
       <div class="sec-ey reveal">MEMPELAI</div>
       <h2 class="sec-h reveal r1">Akan Melangsungkan Pernikahan</h2>
