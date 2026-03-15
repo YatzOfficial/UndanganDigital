@@ -88,11 +88,11 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .nc-skip:hover{color:var(--txt-soft);}
 
 /* ======= SAMPUL ======= */
-#sampul-page{position:fixed;inset:0;z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:var(--cream2);transition:opacity 1s;}
+#sampul-page{position:fixed;inset:0;z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,#f0ede8 0%,#e8e4de 40%,#ede9e3 70%,#e6e2dc 100%);transition:opacity 1s;}
 #sampul-page::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--gold-faint) 1px,transparent 1px);background-size:28px 28px;opacity:0.5;}
 /* Flower decorations on sampul */
 #sampul-page::after{content:'';position:absolute;top:-20px;right:-30px;width:260px;height:260px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
-.sampul-flower-lb{position:absolute;bottom:-20px;left:-30px;width:240px;height:240px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
+.sampul-flower-lb{position:absolute;bottom:-40px;left:-40px;width:320px;height:320px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.8;pointer-events:none;}
 #sampul-page.hiding{opacity:0;pointer-events:none;}
 @keyframes sp-in{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
 .sp-label{font-family:var(--ff-display);font-size:8px;letter-spacing:6px;color:var(--txt-soft);margin-bottom:28px;animation:sp-in 1s 0.3s both;}
@@ -144,7 +144,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .sp-tagline{font-family:var(--ff-serif);font-style:italic;font-size:13px;color:var(--txt-soft);margin-top:28px;letter-spacing:1px;animation:sp-in 1s 0.9s both;}
 
 /* ======= UNDANGAN UTAMA ======= */
-#undangan{display:none;opacity:0;transition:opacity 0.9s;background:var(--cream);}
+#undangan{display:none;opacity:0;transition:opacity 0.9s;background:linear-gradient(160deg,#f0ede8 0%,#e8e4de 40%,#ede9e3 70%,#e6e2dc 100%);}
 #undangan.show{opacity:1;}
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .ptcl{position:absolute;border-radius:50%;background:radial-gradient(circle,var(--rose2),transparent);opacity:0;animation:prise linear infinite;}
@@ -251,13 +251,13 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 @keyframes sdot{0%,100%{transform:translateY(0);opacity:1;}62%{transform:translateY(10px);opacity:0;}}
 
 /* ======= SECTIONS ======= */
-.sec{padding:80px 48px;text-align:center;position:relative;background:var(--cream);}
-.sec.alt{background:var(--cream2);}
+.sec{padding:80px 48px;text-align:center;position:relative;background:linear-gradient(160deg,#f0ede8 0%,#e8e4de 40%,#ede9e3 70%,#e6e2dc 100%);}
+.sec.alt{background:linear-gradient(160deg,#ebe7e2 0%,#e2deda 40%,#e7e3de 70%,#e0dbd5 100%);}
 .sec.alt::before,.sec.alt::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-line),transparent);}
 .sec.alt::before{top:0;}.sec.alt::after{bottom:0;}
 /* Floral section dividers */
-.sec-flower-r{position:absolute;right:-15px;top:-15px;width:160px;height:160px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.22;pointer-events:none;}
-.sec-flower-l{position:absolute;left:-15px;bottom:-15px;width:150px;height:150px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.22;pointer-events:none;}
+.sec-flower-r{position:absolute;right:-30px;top:-30px;width:260px;height:260px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
+.sec-flower-l{position:absolute;left:-30px;bottom:-30px;width:240px;height:240px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
 .sec-ey{font-family:var(--ff-display);font-size:8.5px;letter-spacing:5px;color:var(--gold);opacity:0.8;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:12px;}
 .sec-ey::before,.sec-ey::after{content:'';width:24px;height:1px;background:var(--gold);opacity:0.4;}
 .sec-h{font-family:var(--ff-serif);font-weight:400;font-size:clamp(24px,4.5vw,40px);color:var(--txt);line-height:1.2;margin-bottom:14px;}
@@ -355,10 +355,10 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .rsvp-btn:active{transform:scale(0.98);}
 
 /* FOOTER */
-.ft{background:var(--cream3);padding:64px 44px 50px;text-align:center;border-top:1px solid var(--gold-line);position:relative;overflow:hidden;}
+.ft{background:linear-gradient(160deg,#ebe7e2 0%,#e2deda 60%,#e7e3de 100%);padding:64px 44px 50px;text-align:center;border-top:1px solid var(--gold-line);position:relative;overflow:hidden;}
 .ft::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:180px;height:2px;background:linear-gradient(to right,transparent,var(--gold2),transparent);}
-.ft-flower-tr{position:absolute;top:-10px;right:-10px;width:130px;height:130px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.25;pointer-events:none;}
-.ft-flower-lb{position:absolute;bottom:-10px;left:-10px;width:120px;height:120px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.25;pointer-events:none;}
+.ft-flower-tr{position:absolute;top:-30px;right:-30px;width:240px;height:240px;background:url('bunga1.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
+.ft-flower-lb{position:absolute;bottom:-30px;left:-30px;width:220px;height:220px;background:url('bunga2.webp') center/contain no-repeat;opacity:0.55;pointer-events:none;}
 .ft-top{font-family:var(--ff-display);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:0.7;margin-bottom:10px;}
 .ft-name{font-family:var(--ff-serif);font-weight:400;font-style:italic;font-size:clamp(22px,3.8vw,28px);color:var(--txt);margin-bottom:24px;}
 .ft-orn{display:flex;align-items:center;gap:8px;max-width:240px;margin:0 auto 18px;}
