@@ -231,6 +231,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .sec{padding:80px 48px;text-align:center;position:relative;background:var(--cream);}
 .sec.alt{background:var(--cream2);}
 .sec-mempelai{background:url('bg.webp') center/cover no-repeat !important;}
+.sec-bg2{background:url('bg2.webp') center/contain no-repeat, #fff8f6 !important;background-size:100% auto !important;}
 .sec.alt::before,.sec.alt::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-line),transparent);}
 .sec.alt::before{top:0;}.sec.alt::after{bottom:0;}
 /* Floral section dividers */
@@ -574,7 +575,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec sec-bg2">
       <div class="sec-flower-r"></div>
       <div class="sec-ey reveal">DIRANGKAIKAN DENGAN</div>
       <h2 class="sec-h reveal r1">Khitanan &amp; Tasyakuran Aqiqah</h2>
@@ -586,7 +587,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
-    <section class="sec alt">
+    <section class="sec alt sec-bg2">
       <div class="sec-flower-l"></div>
       <div class="sec-ey reveal">JADWAL ACARA</div>
       <h2 class="sec-h reveal r1">Akad Nikah</h2>
@@ -602,7 +603,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div></div>
     </section>
 
-    <section class="sec">
+    <section class="sec sec-bg2">
       <div class="sec-flower-r"></div>
       <div class="sec-ey reveal">JADWAL ACARA</div>
       <h2 class="sec-h reveal r1">Resepsi &amp; Rangkaian Acara</h2>
@@ -630,7 +631,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec sec-bg2">
       <div class="sec-flower-r"></div>
       <div class="sec-ey reveal">DOA &amp; HARAPAN</div>
       <h2 class="sec-h reveal r1">Mohon Doa Restu</h2>
@@ -823,8 +824,20 @@ function tick(){
 
 function toggleMusic(){
   const audio=gi('bg-audio'),btn=gi('music-btn');
-  if(audio.paused){audio.play();btn.textContent='🎵';}else{audio.pause();btn.textContent='🔇';}
+  if(audio.paused){audio.play();musicPlaying=true;btn.textContent='🎵';}else{audio.pause();musicPlaying=false;btn.textContent='🔇';}
 }
+// Otomatis pause saat user pindah tab / minimize / keluar app
+document.addEventListener('visibilitychange',()=>{
+  const audio=gi('bg-audio');
+  if(document.hidden){
+    if(!audio.paused){audio.pause();gi('music-btn').textContent='🔇';musicPlaying=false;}
+  }
+});
+// Pause saat window blur (pindah aplikasi di desktop)
+window.addEventListener('blur',()=>{
+  const audio=gi('bg-audio');
+  if(!audio.paused){audio.pause();gi('music-btn').textContent='🔇';musicPlaying=false;}
+});
 function openAdmin(){gi('admin-panel').classList.add('open');}
 function closeAdmin(){gi('admin-panel').classList.remove('open');}
 function showTab(id,btn){
