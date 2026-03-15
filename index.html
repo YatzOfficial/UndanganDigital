@@ -196,45 +196,47 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   padding:100px 40px 80px;
   position:relative;overflow:hidden;
-  background:var(--cream);
+  background:linear-gradient(160deg,#f0ede8 0%,#e8e4de 40%,#ede9e3 70%,#e6e2dc 100%);
 }
 /* Flower decorations on cover */
 .cover-flower-tr{
-  position:absolute;top:-10px;right:-20px;
-  width:280px;height:280px;
+  position:absolute;top:-30px;right:-40px;
+  width:min(380px,88vw);height:min(380px,88vw);
   background:url('bunga1.webp') center/contain no-repeat;
-  opacity:0.7;pointer-events:none;
+  opacity:1;pointer-events:none;
+  z-index:2;
 }
 .cover-flower-lb{
-  position:absolute;bottom:-10px;left:-20px;
-  width:260px;height:260px;
+  position:absolute;bottom:-30px;left:-40px;
+  width:min(360px,86vw);height:min(360px,86vw);
   background:url('bunga2.webp') center/contain no-repeat;
-  opacity:0.7;pointer-events:none;
+  opacity:1;pointer-events:none;
+  z-index:2;
 }
 /* Gold oval border frame */
 .cover-oval{
   position:absolute;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:min(500px,92vw);
-  height:min(800px,88vh);
+  width:min(520px,90vw);
+  height:min(860px,92vh);
   background:url('border.webp') center/contain no-repeat;
   pointer-events:none;
-  z-index:0;
+  z-index:1;
   opacity:0;
   animation:cfi 1.5s 0.5s forwards;
 }
 @keyframes cfi{to{opacity:1;}}
 @keyframes csu{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
 
-.cv-content{position:relative;z-index:1;}
+.cv-content{position:relative;z-index:3;}
 .cv-bism{font-family:var(--ff-serif);font-style:italic;font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;opacity:0;animation:csu 1.2s 0.4s var(--ease) forwards;}
 .cv-badges{display:flex;gap:5px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:14px;opacity:0;animation:csu 1.2s 0.65s var(--ease) forwards;}
 .cv-badge{font-family:var(--ff-display);font-size:6px;letter-spacing:2.5px;color:var(--gold);border:1px solid var(--gold-line);padding:3px 8px;background:var(--gold-faint);}
 .cv-dot{color:var(--gold);opacity:0.4;font-size:6px;}
 .cv-names{opacity:0;animation:csu 1.2s 0.85s var(--ease) forwards;}
-.cv-names h1{font-family:var(--ff-serif);font-weight:400;font-style:italic;font-size:clamp(28px,6.5vw,52px);color:var(--txt);line-height:1.0;}
-.cv-amp{display:block;font-size:clamp(16px,3.2vw,28px);color:var(--gold);opacity:0.7;margin:2px 0;}
+.cv-names h1{font-family:var(--ff-serif);font-weight:600;font-style:italic;font-size:clamp(36px,8vw,64px);color:var(--txt);line-height:1.05;}
+.cv-amp{display:block;font-size:clamp(18px,3.5vw,30px);color:var(--gold);opacity:0.85;margin:4px 0;font-style:italic;}
 .cv-n2{color:var(--rose);}
 .cv-sep{display:flex;align-items:center;gap:12px;margin:12px auto;width:fit-content;opacity:0;animation:csu 1.2s 1.3s var(--ease) forwards;}
 .cv-sep-line{width:50px;height:1px;background:linear-gradient(to right,transparent,var(--gold));}
@@ -381,8 +383,8 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
   .ayat-box{padding:34px 20px;}
   .cd-num{font-size:clamp(26px,8vw,42px);}
   .evt-card{padding:26px 16px;}
-  .cover-flower-tr{width:200px;height:200px;}
-  .cover-flower-lb{width:190px;height:190px;}
+  .cover-flower-tr{width:min(280px,82vw);height:min(280px,82vw);}
+  .cover-flower-lb{width:min(270px,80vw);height:min(270px,80vw);}
   .cover-oval{width:min(390px,92vw);height:min(640px,84vh);}
 }
 </style>
