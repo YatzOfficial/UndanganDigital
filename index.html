@@ -302,6 +302,22 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .ayat-txt{font-family:var(--ff-serif);font-style:italic;font-size:17px;line-height:2;color:var(--txt);margin-bottom:12px;position:relative;z-index:1;}
 .ayat-ref{font-family:var(--ff-display);font-size:11px;letter-spacing:2.5px;color:var(--gold);opacity:0.7;position:relative;z-index:1;}
 
+
+/* TANDA KASIH */
+.tk-wrap{max-width:460px;margin:0 auto;}
+.tk-intro{font-family:var(--ff-body);font-size:13px;line-height:2;color:var(--txt-soft);font-weight:300;margin-bottom:28px;}
+.tk-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--gold-line);border-radius:4px;overflow:hidden;background:rgba(255,252,248,0.85);backdrop-filter:blur(8px);}
+.tk-card{padding:20px 22px;border-bottom:1px solid var(--gold-line);display:flex;flex-direction:column;gap:6px;}
+.tk-card:last-child{border-bottom:none;}
+.tk-no{font-family:var(--ff-serif);font-size:18px;color:var(--txt);font-weight:600;letter-spacing:1px;}
+.tk-row{display:flex;align-items:center;gap:12px;}
+.tk-bank-logo{height:28px;object-fit:contain;}
+.tk-bank-name{font-family:var(--ff-display);font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600;}
+.tk-copy{background:var(--gold);color:#fff;border:none;padding:8px 16px;font-family:var(--ff-display);font-size:11px;letter-spacing:2px;cursor:pointer;border-radius:30px;transition:all 0.3s;white-space:nowrap;}
+.tk-copy:active{transform:scale(0.96);}
+.tk-an{font-family:var(--ff-body);font-size:12px;color:var(--txt-soft);margin-top:2px;}
+.tk-hidden{display:none !important;}
+
 /* RSVP */
 .rsvp-wrap{max-width:440px;margin:0 auto;}
 .rsvp-note{background:var(--cream2);border:1px solid var(--gold-line);border-left:3px solid var(--gold2);padding:14px 16px;margin-bottom:22px;text-align:left;}
@@ -498,6 +514,19 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       <div class="ap-field"><label>Kata Sambutan</label><textarea id="e-sambutan"></textarea></div>
       <div class="ap-field"><label>Nama Keluarga (footer)</label><input id="e-keluarga"></div>
       <div class="ap-field"><label>Nomor WA RSVP (tanpa +)</label><input id="e-wa"></div>
+      <div class="ap-sec">— TANDA KASIH —</div>
+      <div class="ap-field"><label>Judul Section (opsional)</label><input id="e-tk-judul" placeholder="Tanda Kasih"></div>
+      <div class="ap-field"><label>Teks Intro (opsional)</label><textarea id="e-tk-intro" rows="3"></textarea></div>
+      <div class="ap-sec">— Rekening 1 —</div>
+      <div class="ap-field"><label>Nama Bank 1</label><input id="e-tk-bank1" placeholder="BCA / BRI / Mandiri / dll"></div>
+      <div class="ap-field"><label>Nomor Rekening 1</label><input id="e-tk-no1" placeholder="0251666082"></div>
+      <div class="ap-field"><label>Atas Nama 1</label><input id="e-tk-an1" placeholder="a/n Nama"></div>
+      <div class="ap-field"><label>Logo Bank 1 (URL gambar)</label><input id="e-tk-logo1" placeholder="https://...logo.png"></div>
+      <div class="ap-sec">— Rekening 2 —</div>
+      <div class="ap-field"><label>Nama Bank 2</label><input id="e-tk-bank2" placeholder="BCA / BRI / Mandiri / dll"></div>
+      <div class="ap-field"><label>Nomor Rekening 2</label><input id="e-tk-no2" placeholder="1100600249"></div>
+      <div class="ap-field"><label>Atas Nama 2</label><input id="e-tk-an2" placeholder="a/n Nama"></div>
+      <div class="ap-field"><label>Logo Bank 2 (URL gambar)</label><input id="e-tk-logo2" placeholder="https://...logo.png"></div>
       <button class="ap-save" onclick="saveAll()">⬇ DOWNLOAD config.json</button>
       <button class="ap-logout" onclick="location.reload()">↩ KELUAR ADMIN</button>
     </div>
@@ -659,6 +688,36 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
+
+    <section class="sec sec-bg2" id="sec-tanda-kasih">
+      <div class="sec-flower-r"></div>
+      <div class="sec-ey reveal">TANDA KASIH</div>
+      <h2 class="sec-h reveal r1" id="d-tk-judul">Tanda Kasih</h2>
+      <div class="tk-wrap reveal r2">
+        <p class="tk-intro" id="d-tk-intro">Kehadiran dan Doa restu bapak/ibu merupakan kebahagiaan bagi kami. Tanpa mengurangi rasa hormat, bagi bapak/ibu/saudara/saudari yang berkenan memberikan tanda kasih, dapat melalui informasi berikut 🙏</p>
+        <div class="tk-cards">
+          <div class="tk-card" id="tk-card-1">
+            <div class="tk-no" id="d-tk-no1"></div>
+            <div class="tk-row">
+              <img class="tk-bank-logo" id="d-tk-logo1" src="" alt="">
+              <span class="tk-bank-name" id="d-tk-bank1"></span>
+              <button class="tk-copy" onclick="copyRek('d-tk-no1','tk-copy-1')" id="tk-copy-1">Salin Rekening</button>
+            </div>
+            <div class="tk-an" id="d-tk-an1"></div>
+          </div>
+          <div class="tk-card" id="tk-card-2">
+            <div class="tk-no" id="d-tk-no2"></div>
+            <div class="tk-row">
+              <img class="tk-bank-logo" id="d-tk-logo2" src="" alt="">
+              <span class="tk-bank-name" id="d-tk-bank2"></span>
+              <button class="tk-copy" onclick="copyRek('d-tk-no2','tk-copy-2')" id="tk-copy-2">Salin Rekening</button>
+            </div>
+            <div class="tk-an" id="d-tk-an2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="ft">
       <div class="ft-flower-tr"></div>
       <div class="ft-flower-lb"></div>
@@ -762,6 +821,17 @@ function applyConfig(){
   st('d-a2-ortu',C.anak2_ortu?'Putri dari '+C.anak2_ortu:'');
   st('d-a3-ortu',C.anak3_ortu?'Putra dari '+C.anak3_ortu:'');
   st('d-greeting',C.sambutan);st('d-family',C.keluarga_footer);
+  // Tanda Kasih
+  if(C.tk_judul)st('d-tk-judul',C.tk_judul);
+  if(C.tk_intro)st('d-tk-intro',C.tk_intro);
+  // Rekening 1
+  if(C.tk_no1){st('d-tk-no1',C.tk_no1);st('d-tk-bank1',C.tk_bank1||'');st('d-tk-an1',C.tk_an1||'');gi('tk-card-1').classList.remove('tk-hidden');}else{gi('tk-card-1').classList.add('tk-hidden');}
+  if(C.tk_logo1){gi('d-tk-logo1').src=C.tk_logo1;gi('d-tk-logo1').style.display='block';}else{gi('d-tk-logo1').style.display='none';}
+  // Rekening 2
+  if(C.tk_no2){st('d-tk-no2',C.tk_no2);st('d-tk-bank2',C.tk_bank2||'');st('d-tk-an2',C.tk_an2||'');gi('tk-card-2').classList.remove('tk-hidden');}else{gi('tk-card-2').classList.add('tk-hidden');}
+  if(C.tk_logo2){gi('d-tk-logo2').src=C.tk_logo2;gi('d-tk-logo2').style.display='block';}else{gi('d-tk-logo2').style.display='none';}
+  // Sembunyikan section jika tidak ada rekening sama sekali
+  const secTK=gi('sec-tanda-kasih');if(secTK){secTK.style.display=(C.tk_no1||C.tk_no2)?'':'none';}
   if(C.musik_url)gi('bg-audio').src=C.musik_url;
   const jam=C.akad_waktu.match(/\d+/);
   cdTarget=new Date(C.akad_tanggal+'T'+(jam?jam[0].padStart(2,'0'):'15')+':30:00');
@@ -772,6 +842,9 @@ function applyConfig(){
   sv('e-res-tgl',C.resepsi_tanggal);sv('e-res-wkt',C.resepsi_waktu);sv('e-res-tmp',C.resepsi_tempat);sv('e-res-adr',C.resepsi_alamat);sv('e-res-map',C.resepsi_maps);
   sv('e-a1',C.anak1_nama);sv('e-a1-ortu',C.anak1_ortu);sv('e-a2',C.anak2_nama);sv('e-a2-ortu',C.anak2_ortu);sv('e-a3',C.anak3_nama);sv('e-a3-ortu',C.anak3_ortu);
   sv('e-sambutan',C.sambutan);sv('e-keluarga',C.keluarga_footer);sv('e-musik-url',C.musik_url);sv('e-musik-nama',C.musik_nama);sv('e-wa',C.wa_rsvp);
+  sv('e-tk-judul',C.tk_judul);sv('e-tk-intro',C.tk_intro);
+  sv('e-tk-bank1',C.tk_bank1);sv('e-tk-no1',C.tk_no1);sv('e-tk-an1',C.tk_an1);sv('e-tk-logo1',C.tk_logo1);
+  sv('e-tk-bank2',C.tk_bank2);sv('e-tk-no2',C.tk_no2);sv('e-tk-an2',C.tk_an2);sv('e-tk-logo2',C.tk_logo2);
 }
 
 function openEnvelope(){
@@ -822,6 +895,22 @@ function tick(){
   st('cd-s',pad(Math.floor(diff%60000/1000)));
 }
 
+function copyRek(elId, btnId){
+  const no = gi(elId).textContent.trim();
+  if(!no) return;
+  navigator.clipboard.writeText(no).then(()=>{
+    const btn = gi(btnId);
+    const orig = btn.textContent;
+    btn.textContent = '✓ Tersalin!';
+    btn.style.background = '#4caf50';
+    setTimeout(()=>{ btn.textContent = orig; btn.style.background = ''; }, 2000);
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = no; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    toast('✓ Nomor rekening disalin!');
+  });
+}
 function toggleMusic(){
   const audio=gi('bg-audio'),btn=gi('music-btn');
   if(audio.paused){audio.play();musicPlaying=true;btn.textContent='🎵';}else{audio.pause();musicPlaying=false;btn.textContent='🔇';}
@@ -854,6 +943,9 @@ function saveAll(){
   C.resepsi_tanggal=gv('e-res-tgl');C.resepsi_waktu=gv('e-res-wkt');C.resepsi_tempat=gv('e-res-tmp');C.resepsi_alamat=gv('e-res-adr');C.resepsi_maps=gv('e-res-map');
   C.anak1_nama=gv('e-a1');C.anak1_ortu=gv('e-a1-ortu');C.anak2_nama=gv('e-a2');C.anak2_ortu=gv('e-a2-ortu');C.anak3_nama=gv('e-a3');C.anak3_ortu=gv('e-a3-ortu');
   C.sambutan=gv('e-sambutan');C.keluarga_footer=gv('e-keluarga');C.musik_url=gv('e-musik-url');C.musik_nama=gv('e-musik-nama');C.wa_rsvp=gv('e-wa');
+  C.tk_judul=gv('e-tk-judul');C.tk_intro=gv('e-tk-intro');
+  C.tk_bank1=gv('e-tk-bank1');C.tk_no1=gv('e-tk-no1');C.tk_an1=gv('e-tk-an1');C.tk_logo1=gv('e-tk-logo1');
+  C.tk_bank2=gv('e-tk-bank2');C.tk_no2=gv('e-tk-no2');C.tk_an2=gv('e-tk-an2');C.tk_logo2=gv('e-tk-logo2');
   applyConfig();
   const blob=new Blob([JSON.stringify(C,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='config.json';a.click();
