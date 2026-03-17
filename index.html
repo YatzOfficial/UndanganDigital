@@ -149,8 +149,11 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .ptcl{position:absolute;border-radius:50%;background:radial-gradient(circle,var(--rose2),transparent);opacity:0;animation:prise linear infinite;}
 @keyframes prise{0%{opacity:0;transform:translateY(0) scale(0.5);}8%{opacity:0.3;}92%{opacity:0.05;}100%{opacity:0;transform:translateY(-100vh);}}
-#music-btn{position:fixed;bottom:22px;left:22px;z-index:8000;display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,252,248,0.92);backdrop-filter:blur(14px);border:1px solid var(--gold-line);cursor:pointer;font-size:16px;box-shadow:0 4px 14px rgba(184,149,90,0.2);transition:all 0.3s;}
+#music-btn{position:fixed;bottom:22px;left:22px;z-index:8000;display:none;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(255,252,248,0.95);backdrop-filter:blur(14px);border:1px solid var(--gold-line);cursor:pointer;font-size:22px;box-shadow:0 4px 18px rgba(184,149,90,0.3);transition:all 0.3s;}
 #music-btn.visible{display:flex;}
+#music-btn .music-icon{display:inline-block;transition:transform 0.3s;}
+#music-btn.playing .music-icon{animation:music-spin 4s linear infinite;}
+@keyframes music-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 #admin-fab{position:fixed;bottom:22px;right:22px;z-index:8000;display:none;align-items:center;gap:7px;background:rgba(255,252,248,0.92);backdrop-filter:blur(14px);border:1px solid var(--gold-line);border-radius:30px;padding:11px 16px;cursor:pointer;font-family:var(--ff-display);font-size:11px;letter-spacing:2px;color:var(--gold);box-shadow:0 4px 14px rgba(184,149,90,0.2);transition:all 0.3s;}
 #admin-fab.visible{display:flex;}
 
@@ -431,7 +434,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 <!-- UNDANGAN -->
 <div id="undangan">
   <div id="particles"></div>
-  <div id="music-btn" onclick="toggleMusic()" title="Musik">🎵</div>
+  <div id="music-btn" onclick="toggleMusic()" title="Musik"><span class="music-icon">🎵</span></div>
   <div id="admin-fab" onclick="openAdmin()">⚙ PANEL ADMIN</div>
 
   <!-- ADMIN PANEL -->
@@ -803,9 +806,9 @@ function initInvitation(){
   if(C.musik_url){
     const audio=gi('bg-audio'),mBtn=gi('music-btn');
     mBtn.classList.add('visible');
-    audio.play().then(()=>{musicPlaying=true;mBtn.textContent='🎵';}).catch(()=>{
+    audio.play().then(()=>{musicPlaying=true;const icon=mBtn.querySelector('.music-icon');if(icon)icon.textContent='🎵';mBtn.classList.add('playing');}).catch(()=>{
       mBtn.textContent='🔇';
-      const tryPlay=()=>{audio.play().then(()=>{musicPlaying=true;mBtn.textContent='🎵';}).catch(()=>{});document.removeEventListener('touchstart',tryPlay);document.removeEventListener('click',tryPlay);};
+      const tryPlay=()=>{audio.play().then(()=>{musicPlaying=true;const icon=mBtn.querySelector('.music-icon');if(icon)icon.textContent='🎵';mBtn.classList.add('playing');}).catch(()=>{});document.removeEventListener('touchstart',tryPlay);document.removeEventListener('click',tryPlay);};
       document.addEventListener('touchstart',tryPlay,{once:true,passive:true});
       document.addEventListener('click',tryPlay,{once:true});
     });
@@ -824,19 +827,59 @@ function tick(){
 
 function toggleMusic(){
   const audio=gi('bg-audio'),btn=gi('music-btn');
-  if(audio.paused){audio.play();musicPlaying=true;btn.textContent='🎵';}else{audio.pause();musicPlaying=false;btn.textContent='🔇';}
+  const icon=btn.querySelector('.music-icon');
+  if(audio.paused){
+    audio.play();musicPlaying=true;
+    icon.textContent='🎵';btn.classList.add('playing');
+  }else{
+    audio.pause();musicPlaying=false;
+    icon.textContent='🔇';btn.classList.remove('playing');
+  }
 }
 // Otomatis pause saat user pindah tab / minimize / keluar app
 document.addEventListener('visibilitychange',()=>{
   const audio=gi('bg-audio');
+  const btn=gi('music-btn');
+  const icon=btn?btn.querySelector('.music-icon'):null;
   if(document.hidden){
-    if(!audio.paused){audio.pause();gi('music-btn').textContent='🔇';musicPlaying=false;}
+    if(!audio.paused){
+      audio.pause();
+      if(icon)icon.textContent='🔇';
+      if(btn)btn.classList.remove('playing');
+      musicPlaying=false;
+    }
+  } else {
+    // Auto resume saat kembali ke tab
+    if(musicPlaying && audio.paused && audio.src){
+      audio.play().then(()=>{
+        if(icon)icon.textContent='🎵';
+        if(btn)btn.classList.add('playing');
+      }).catch(()=>{});
+    }
   }
 });
-// Pause saat window blur (pindah aplikasi di desktop)
+// Pause saat window blur, resume saat focus (desktop)
 window.addEventListener('blur',()=>{
   const audio=gi('bg-audio');
-  if(!audio.paused){audio.pause();gi('music-btn').textContent='🔇';musicPlaying=false;}
+  const btn=gi('music-btn');
+  if(!audio.paused){
+    audio.pause();
+    const icon=btn?btn.querySelector('.music-icon'):null;
+    if(icon)icon.textContent='🔇';
+    if(btn)btn.classList.remove('playing');
+    musicPlaying=false;
+  }
+});
+window.addEventListener('focus',()=>{
+  const audio=gi('bg-audio');
+  const btn=gi('music-btn');
+  if(musicPlaying && audio.paused && audio.src){
+    audio.play().then(()=>{
+      const icon=btn?btn.querySelector('.music-icon'):null;
+      if(icon)icon.textContent='🎵';
+      if(btn)btn.classList.add('playing');
+    }).catch(()=>{});
+  }
 });
 function openAdmin(){gi('admin-panel').classList.add('open');}
 function closeAdmin(){gi('admin-panel').classList.remove('open');}
