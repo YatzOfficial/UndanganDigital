@@ -307,22 +307,18 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 
 
 /* COUNTDOWN SWITCH */
-.cd-header{position:relative;display:flex;align-items:center;justify-content:center;gap:0;}
-.cd-title-wrap{position:relative;overflow:hidden;height:44px;display:flex;align-items:center;justify-content:center;}
-.cd-title{font-family:var(--ff-serif);font-weight:400;font-size:clamp(26px,6vw,42px);color:var(--txt);line-height:1.1;position:absolute;width:100%;text-align:center;transition:all 0.6s cubic-bezier(0.4,0,0.2,1);white-space:nowrap;}
-.cd-title.active{opacity:1;transform:translateY(0);}
-.cd-title.exit-up{opacity:0;transform:translateY(-48px);}
-.cd-title.exit-down{opacity:0;transform:translateY(48px);}
-.cd-title.enter-down{opacity:0;transform:translateY(48px);}
-.cd-title.enter-up{opacity:0;transform:translateY(-48px);}
-.cd-switch{position:absolute;right:-52px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:rgba(255,252,248,0.92);border:1px solid var(--gold-line);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(184,149,90,0.2);transition:box-shadow 0.3s;font-size:16px;}
-.cd-switch:hover{box-shadow:0 5px 18px rgba(184,149,90,0.35);}
-.cd-switch.spinning{animation:switch-spin 0.7s cubic-bezier(0.4,0,0.2,1);}
-@keyframes switch-spin{0%{transform:translateY(-50%) rotate(0deg);}60%{transform:translateY(-50%) rotate(200deg);}100%{transform:translateY(-50%) rotate(180deg);}}
-.cd-mode-label{font-family:var(--ff-display);font-size:11px;letter-spacing:2px;color:var(--gold);opacity:0;margin-top:6px;transition:opacity 0.4s;text-align:center;}
-.cd-mode-label.visible{opacity:0.7;}
+.cd-header-wrap{display:inline-flex;align-items:center;justify-content:center;gap:10px;position:relative;}
+.cd-switch-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,252,248,0.95);border:1px solid var(--gold-line);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(184,149,90,0.2);padding:0;transition:box-shadow 0.3s;flex-shrink:0;}
+.cd-switch-btn:hover{box-shadow:0 5px 16px rgba(184,149,90,0.35);}
+.cd-switch-btn img{width:18px;height:18px;display:block;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.cd-switch-btn.spin img{transform:rotate(360deg);}
+.cd-mode-wrap{height:22px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;}
+.cd-mode-lbl{font-family:var(--ff-display);font-size:11px;letter-spacing:3px;color:var(--gold);opacity:0.75;position:absolute;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);white-space:nowrap;}
+.cd-mode-lbl.active{transform:translateY(0);opacity:0.75;}
+.cd-mode-lbl.exit-up{transform:translateY(-24px);opacity:0;}
+.cd-mode-lbl.exit-down{transform:translateY(24px);opacity:0;}
 .cd-wrap{transition:opacity 0.3s;}
-.cd-wrap.fade{opacity:0.3;}
+.cd-wrap.fading{opacity:0.2;}
 
 /* RSVP */
 .rsvp-wrap{max-width:440px;margin:0 auto;}
@@ -644,14 +640,18 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
     <section class="sec alt">
       <div class="sec-flower-l"></div>
       <div class="sec-ey reveal">HITUNG MUNDUR</div>
-      <div class="cd-header reveal r1" style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:100%;margin-bottom:4px;">
-        <div class="cd-title-wrap" style="width:min(340px,88vw);">
-          <span class="cd-title active" id="cd-title-akad">Menuju Hari Bahagia</span>
-          <span class="cd-title enter-down" id="cd-title-res">Resepsi</span>
+      <div class="reveal r1" style="text-align:center;">
+        <div class="cd-header-wrap">
+          <h2 class="sec-h" style="margin:0;">Menuju Hari Bahagia</h2>
+          <button class="cd-switch-btn" id="cd-switch-btn" onclick="switchCountdown()" title="Ganti countdown">
+            <img src="switch.png" alt="switch" id="cd-switch-icon">
+          </button>
         </div>
-        <button class="cd-switch" id="cd-switch-btn" onclick="switchCountdown()" title="Ganti countdown">🔄</button>
+        <div class="cd-mode-wrap" style="margin-top:6px;margin-bottom:2px;">
+          <span class="cd-mode-lbl active" id="cd-lbl-akad">AKAD NIKAH</span>
+          <span class="cd-mode-lbl exit-down" id="cd-lbl-res">RESEPSI</span>
+        </div>
       </div>
-      <div class="cd-mode-label reveal" id="cd-mode-lbl">AKAD NIKAH</div>
       <div class="cd-wrap reveal r2" id="cd-wrap">
         <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">HARI</span></div>
         <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">JAM</span></div>
@@ -794,7 +794,7 @@ function applyConfig(){
   if(C.musik_url)gi('bg-audio').src=C.musik_url;
   const jam=C.akad_waktu.match(/\d+/);
   cdTarget=new Date(C.akad_tanggal+'T'+(jam?jam[0].padStart(2,'0'):'15')+':30:00');
-  const jamRes=C.resepsi_waktu.match(/\d+/);
+  const jamRes=(C.resepsi_waktu||'09.00').match(/\d+/);
   cdResTarget=new Date(C.resepsi_tanggal+'T'+(jamRes?jamRes[0].padStart(2,'0'):'09')+':00:00');
   document.title=`Undangan — ${C.groom_nama} & ${C.bride_nama}`;
   sv('e-groom',C.groom_nama);sv('e-groom-ke',C.groom_putra_ke);sv('e-groom-ayah',C.groom_ayah);sv('e-groom-ibu',C.groom_ibu);sv('e-groom-foto',C.groom_foto);
@@ -856,46 +856,37 @@ function tick(){
 
 function switchCountdown(){
   const btn=gi('cd-switch-btn');
-  const titleAkad=gi('cd-title-akad');
-  const titleRes=gi('cd-title-res');
-  const lbl=gi('cd-mode-lbl');
+  const icon=gi('cd-switch-icon');
+  const lblAkad=gi('cd-lbl-akad');
+  const lblRes=gi('cd-lbl-res');
   const wrap=gi('cd-wrap');
 
-  // Spin animasi tombol
-  btn.classList.remove('spinning');
-  void btn.offsetWidth; // reflow
-  btn.classList.add('spinning');
-  setTimeout(()=>btn.classList.remove('spinning'),700);
+  // Spin tombol
+  btn.classList.remove('spin');
+  void btn.offsetWidth;
+  btn.classList.add('spin');
+  setTimeout(()=>btn.classList.remove('spin'),700);
 
   // Fade angka
-  wrap.classList.add('fade');
+  wrap.classList.add('fading');
 
   if(cdMode==='akad'){
-    // Switch ke resepsi
     cdMode='resepsi';
-    // Title: akad exit up, resepsi enter from down
-    titleAkad.className='cd-title active';
-    void titleAkad.offsetWidth;
-    titleAkad.className='cd-title exit-up';
-    titleRes.className='cd-title enter-down';
-    void titleRes.offsetWidth;
-    setTimeout(()=>{titleRes.className='cd-title active';},50);
-    if(lbl){lbl.textContent='RESEPSI';lbl.classList.add('visible');}
+    // AKAD keluar ke atas, RESEPSI masuk dari bawah
+    lblAkad.className='cd-mode-lbl exit-up';
+    lblRes.className='cd-mode-lbl exit-down';
+    void lblRes.offsetWidth;
+    setTimeout(()=>{ lblRes.className='cd-mode-lbl active'; },30);
   } else {
-    // Switch ke akad
     cdMode='akad';
-    // Title: resepsi exit down, akad enter from up
-    titleRes.className='cd-title active';
-    void titleRes.offsetWidth;
-    titleRes.className='cd-title exit-down';
-    titleAkad.className='cd-title enter-up';
-    void titleAkad.offsetWidth;
-    setTimeout(()=>{titleAkad.className='cd-title active';},50);
-    if(lbl){lbl.textContent='AKAD NIKAH';lbl.classList.add('visible');}
+    // RESEPSI keluar ke bawah, AKAD masuk dari atas
+    lblRes.className='cd-mode-lbl exit-down';
+    lblAkad.className='cd-mode-lbl exit-up';
+    void lblAkad.offsetWidth;
+    setTimeout(()=>{ lblAkad.className='cd-mode-lbl active'; },30);
   }
 
-  // Unfade angka setelah transisi
-  setTimeout(()=>wrap.classList.remove('fade'),350);
+  setTimeout(()=>wrap.classList.remove('fading'),350);
 }
 
 function toggleMusic(){
