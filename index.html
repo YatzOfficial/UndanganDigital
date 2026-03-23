@@ -265,6 +265,55 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .prole{font-family:var(--ff-display);font-size:12px;letter-spacing:3px;color:var(--txt);display:inline-block;padding:3px 12px;opacity:1;margin-bottom:14px;text-shadow:0 1px 10px rgba(255,252,248,1);}
 .ppar{font-family:var(--ff-body);font-size:14px;line-height:2;color:var(--txt);font-weight:500;text-shadow:0 1px 8px rgba(255,252,248,0.95);}
 .ppar strong{color:var(--txt);font-weight:700;}
+
+/* INSTAGRAM BUTTON */
+.pphoto-wrap{position:relative;width:150px;margin:0 auto 18px;}
+.pphoto-wrap .pphoto{margin:0;}
+.ig-btn{
+  position:absolute;
+  bottom:4px;right:4px;
+  width:36px;height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  box-shadow:0 3px 12px rgba(188,24,136,0.45),0 0 0 2.5px rgba(255,255,255,0.9);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;
+  transition:transform 0.3s var(--spring),box-shadow 0.3s var(--ease);
+  z-index:10;
+  overflow:hidden;
+}
+.ig-btn::before{
+  content:'';
+  position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,0.25) 0%,transparent 60%);
+  pointer-events:none;
+}
+.ig-btn img{
+  width:18px;height:18px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  position:relative;z-index:1;
+}
+.ig-btn:hover{
+  transform:scale(1.18) rotate(-6deg);
+  box-shadow:0 6px 20px rgba(188,24,136,0.55),0 0 0 3px rgba(255,255,255,0.95);
+}
+.ig-btn:active{transform:scale(0.95);}
+/* Tooltip "Instagram" muncul saat hover */
+.ig-btn::after{
+  content:'Instagram';
+  position:absolute;
+  bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:rgba(44,32,24,0.88);
+  color:#fff;
+  font-family:var(--ff-display);font-size:9px;letter-spacing:1.5px;
+  padding:4px 8px;border-radius:20px;
+  white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.2s,transform 0.2s;
+}
+.ig-btn:hover::after{opacity:1;transform:translateX(-50%) translateY(0);}
 .c-and{font-family:var(--ff-serif);font-style:italic;font-size:clamp(32px,6vw,48px);color:var(--rose2);opacity:0.6;line-height:1;padding:10px 0;z-index:1;position:relative;}
 /* ANAK */
 .anak-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px;perspective:1200px;}
@@ -646,7 +695,12 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
         <div class="couple-oval"></div>
         <div class="pcard-oval-wrap">
           <div class="pcard">
-            <div class="pphoto" id="cphoto-groom"><span class="pem">🤵</span></div>
+            <div class="pphoto-wrap">
+              <div class="pphoto" id="cphoto-groom"><span class="pem">🤵</span></div>
+              <a class="ig-btn" href="https://www.instagram.com/ilham_wiijaya" target="_blank" rel="noopener" title="Instagram">
+                <img src="iconig.png" alt="Instagram">
+              </a>
+            </div>
             <div class="pname" id="d-groom"></div>
             <div class="prole" id="d-groom-sub"></div>
             <div class="ppar">Putra dari<br><strong id="d-groom-ayah"></strong><br>&amp; <strong id="d-groom-ibu"></strong></div>
@@ -655,7 +709,12 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
         <div class="c-and">&amp;</div>
         <div class="pcard-oval-wrap">
           <div class="pcard">
-            <div class="pphoto" id="cphoto-bride"><span class="pem">👰</span></div>
+            <div class="pphoto-wrap">
+              <div class="pphoto" id="cphoto-bride"><span class="pem">👰</span></div>
+              <a class="ig-btn" href="https://www.instagram.com/dndsabila" target="_blank" rel="noopener" title="Instagram">
+                <img src="iconig.png" alt="Instagram">
+              </a>
+            </div>
             <div class="pname" id="d-bride"></div>
             <div class="prole" id="d-bride-sub"></div>
             <div class="ppar">Putri dari<br><strong id="d-bride-ayah"></strong><br>&amp; <strong id="d-bride-ibu"></strong></div>
