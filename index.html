@@ -234,7 +234,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 /* ======= SECTIONS ======= */
 .sec{padding:80px 48px;text-align:center;position:relative;background:var(--cream);}
 .sec.alt{background:var(--cream2);}
-.sec-mempelai{background:url('bg.webp') center/cover no-repeat !important;}
+.sec-mempelai{background:url('bg2.webp') center/cover no-repeat !important;}
 .sec-bg2{background:url('bg2.webp') center/contain no-repeat, #fff8f6 !important;background-size:100% auto !important;}
 .sec.alt::before,.sec.alt::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-line),transparent);}
 .sec.alt::before{top:0;}.sec.alt::after{bottom:0;}
@@ -252,11 +252,25 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .orn-diam{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:0.5;}
 
 /* MEMPELAI */
-.couple-wrap{display:flex;flex-direction:column;align-items:center;margin-top:32px;gap:0;position:relative;padding:80px 20px 80px;overflow:visible;}
-.couple-oval{display:none;}
+.couple-wrap{display:flex;flex-direction:column;align-items:center;margin-top:32px;gap:0;position:relative;padding:60px 20px 60px;overflow:visible;}
+
+/* Oval emas CSS — auto-resize mengikuti konten */
+.couple-oval{
+  display:block;
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:min(320px,82vw);
+  height:100%;
+  border:1.5px solid var(--gold2);
+  border-radius:50% / 8%;
+  pointer-events:none;
+  z-index:0;
+  box-shadow:0 0 0 1px var(--gold-faint),inset 0 0 40px rgba(184,149,90,0.04);
+}
 .pcard-oval-wrap{position:relative;display:flex;flex-direction:column;align-items:center;z-index:1;overflow:visible;}
 .pcard-oval{display:none;}
-.pcard{padding:20px 24px 16px;text-align:center;position:relative;z-index:1;width:min(320px,80vw);overflow:visible;}
+.pcard{padding:20px 24px 16px;text-align:center;position:relative;z-index:1;width:min(310px,80vw);overflow:visible;}
 .pcard::before{display:none;}
 .pphoto{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;border:1px solid var(--gold-line);background:var(--cream3);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 6px 24px rgba(184,149,90,0.2),0 0 0 3px var(--gold-faint);transition:all 0.5s;}
 .pphoto:hover{box-shadow:0 10px 32px rgba(184,149,90,0.3),0 0 0 4px var(--gold-line);}
@@ -502,13 +516,14 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 
 /* ===== MEMPELAI — fix utama ===== */
 .couple-wrap{
-  padding:clamp(36px,7vw,100px) clamp(12px,4vw,20px);
-  overflow:visible; /* fix bug teks terpotong */
+  padding:clamp(50px,9vw,100px) clamp(12px,4vw,20px);
+  overflow:visible;
 }
+.couple-oval{width:min(310px,80vw);}
 .pcard{
-  width:min(290px,84vw);
+  width:min(280px,76vw);
   padding:clamp(12px,3vw,20px) clamp(12px,3vw,24px) clamp(10px,2.5vw,16px);
-  overflow:visible; /* pastikan teks tidak terpotong */
+  overflow:visible;
 }
 .pphoto-wrap{width:clamp(100px,26vw,150px);}
 .pphoto{width:clamp(100px,26vw,150px);height:clamp(100px,26vw,150px);}
