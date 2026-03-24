@@ -252,7 +252,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .orn-diam{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:0.5;}
 
 /* MEMPELAI */
-.couple-wrap{display:flex;flex-direction:column;align-items:center;margin-top:32px;gap:0;position:relative;padding:130px 20px 130px;}
+.couple-wrap{display:flex;flex-direction:column;align-items:center;margin-top:32px;gap:0;position:relative;padding:80px 20px 80px;}
 .couple-oval{display:none;}
 .pcard-oval-wrap{position:relative;display:flex;flex-direction:column;align-items:center;z-index:1;}
 .pcard-oval{display:none;}
@@ -482,19 +482,79 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--cream);color:var(--gold);border:1px solid var(--gold-line);padding:11px 20px;font-family:var(--ff-display);font-size:12px;letter-spacing:2px;z-index:99999;opacity:0;transition:all 0.4s var(--ease);backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 24px rgba(184,149,90,0.2);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
-@media(max-width:600px){
-  .couple-wrap{flex-direction:column;}
+/* ======= RESPONSIVE MOBILE ======= */
+@media(max-width:768px){
+  /* Sections */
+  .sec{padding:56px 20px;}
+  .cover{padding:80px 20px 70px;}
+
+  /* Mempelai */
+  .couple-wrap{flex-direction:column;padding:60px 16px 60px;}
   .couple-oval{width:min(360px,93vw);}
   .c-and{font-size:28px;padding:6px 0;}
-  .anak-row{grid-template-columns:1fr;}
-  .sec{padding:56px 22px;}
-  .cover{padding:80px 22px 70px;}
-  .ayat-box{padding:34px 20px;}
-  .cd-num{font-size:clamp(26px,8vw,42px);}
+  .pcard{width:min(300px,88vw);padding:16px 16px 12px;}
+  .pphoto-wrap{width:130px;}
+  .pphoto{width:130px;height:130px;}
+  .pname{font-size:clamp(22px,6vw,30px);}
+
+  /* Kartu anak - 1 kolom di mobile */
+  .anak-row{grid-template-columns:1fr;gap:14px;}
+  .anak-card{padding:24px 20px 0;}
+
+  /* Event card */
   .evt-card{padding:26px 16px;}
+  .evt-single{max-width:100%;}
+  .evt-val{font-size:16px;}
+
+  /* Ayat */
+  .ayat-box{padding:34px 20px;}
+  .ayat-txt{font-size:15px;}
+
+  /* Countdown */
+  .cd-num{font-size:clamp(26px,8vw,42px);}
+  .cd-wrap{max-width:100%;}
+
+  /* RSVP */
+  .rsvp-wrap{max-width:100%;}
+
+  /* Footer */
+  .ft{padding:50px 24px 40px;}
+
+  /* Nama card (form awal) */
+  .nama-card{width:min(360px,92vw);}
+  .nc-body{padding:40px 28px 34px;}
+  .nc-h{font-size:26px;}
+
+  /* Cover flower decorations */
   .cover-flower-tr{width:min(360px,90vw);height:min(360px,90vw);}
   .cover-flower-lb{width:min(340px,88vw);height:min(340px,88vw);}
   .cover-oval{width:min(480px,94vw);height:min(800px,96vh);}
+}
+
+/* HP kecil - 360px ke bawah */
+@media(max-width:390px){
+  .sec{padding:48px 16px;}
+  .cover{padding:70px 16px 60px;}
+  .sec-h{font-size:clamp(20px,5.5vw,28px);}
+  .sec-p{font-size:13px;}
+  .pcard{width:92vw;}
+  .pphoto-wrap{width:120px;}
+  .pphoto{width:120px;height:120px;}
+  .pname{font-size:clamp(20px,5.5vw,26px);}
+  .prole{font-size:11px;letter-spacing:2px;}
+  .ppar{font-size:12px;}
+  .anak-nm{font-size:14px;}
+  .anak-ibu-name{font-size:12px;}
+  .evt-card{padding:20px 14px;}
+  .evt-val{font-size:15px;}
+  .evt-val-sm{font-size:12px;}
+  .cd-unit{padding:14px 4px;}
+  .nc-body{padding:32px 20px 28px;}
+  .nc-h{font-size:22px;}
+  .rsvp-note p{font-size:12px;}
+  .choice-lbl{font-size:11px;letter-spacing:1px;}
+  .ft{padding:40px 16px 32px;}
+  .ft-name{font-size:clamp(18px,4.5vw,22px);}
 }
 </style>
 </head>
