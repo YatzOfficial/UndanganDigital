@@ -944,8 +944,8 @@ function applyConfig(){
   st('d-groom-ayah',C.groom_ayah);st('d-groom-ibu',C.groom_ibu);
   st('d-bride',C.bride_nama);st('d-bride-sub','PUTRI KE-'+C.bride_putri_ke);
   st('d-bride-ayah',C.bride_ayah);st('d-bride-ibu',C.bride_ibu);
-  if(C.groom_foto)gi('cphoto-groom').innerHTML=`<img src="${C.groom_foto}">`;
-  if(C.bride_foto)gi('cphoto-bride').innerHTML=`<img src="${C.bride_foto}">`;
+  gi('cphoto-groom').innerHTML=`<img src="${C.groom_foto||'ilham.png'}" onerror="this.parentElement.innerHTML='<span class=pem>🤵</span>'">`;
+  gi('cphoto-bride').innerHTML=`<img src="${C.bride_foto||'adinda.png'}" onerror="this.parentElement.innerHTML='<span class=pem>👰</span>'">`;
   st('d-akad-date',fmt(C.akad_tanggal));st('d-akad-time',C.akad_waktu);
   st('d-akad-place',C.akad_tempat);st('d-akad-addr',C.akad_alamat);sh('d-akad-maps',C.akad_maps);
   st('d-res-date',fmt(C.resepsi_tanggal));st('d-res-time',C.resepsi_waktu);
