@@ -493,6 +493,125 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .sec-mempelai .ppar{
   text-shadow:0 1px 14px rgba(255,252,248,0.95),0 0 28px rgba(255,252,248,0.8);
 }
+/* TANDA KASIH */
+.tk-section{
+  position:relative;
+  background:url('bg2.webp') center/cover no-repeat;
+  padding:clamp(50px,10vw,90px) clamp(18px,5vw,48px);
+  text-align:center;
+  overflow:hidden;
+}
+.tk-oval-wrap{
+  position:relative;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  width:min(340px,88vw);
+  margin:0 auto;
+  padding:clamp(36px,7vw,52px) clamp(20px,5vw,36px) clamp(32px,6vw,46px);
+}
+.tk-oval{
+  position:absolute;
+  inset:0;
+  border:1.5px solid var(--gold2);
+  border-radius:50% / 7%;
+  pointer-events:none;
+  box-shadow:0 0 0 1px var(--gold-faint),inset 0 0 40px rgba(184,149,90,0.04);
+}
+.tk-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;
+  font-size:clamp(24px,6vw,32px);
+  color:var(--gold2);
+  margin-bottom:14px;
+  text-shadow:0 1px 10px rgba(255,252,248,0.95);
+  position:relative;z-index:1;
+  letter-spacing:1px;
+}
+.tk-desc{
+  font-family:var(--ff-body);
+  font-size:clamp(12px,3vw,13px);
+  color:var(--txt);
+  line-height:1.9;
+  max-width:280px;
+  margin:0 auto clamp(22px,5vw,30px);
+  text-shadow:0 1px 8px rgba(255,252,248,0.95);
+  position:relative;z-index:1;
+}
+.tk-card{
+  background:rgba(255,252,248,0.88);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--gold-line);
+  border-top:2px solid var(--gold2);
+  padding:clamp(20px,5vw,28px) clamp(18px,4.5vw,28px);
+  width:100%;
+  position:relative;z-index:1;
+  box-shadow:0 8px 28px rgba(184,149,90,0.14);
+}
+.tk-bank-row{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.tk-bank-logo{
+  width:clamp(58px,15vw,74px);
+  height:clamp(34px,9vw,44px);
+  object-fit:contain;
+  border:1px solid var(--gold-line);
+  border-radius:6px;
+  padding:4px 8px;
+  background:#fff;
+  flex-shrink:0;
+}
+.tk-rekening{text-align:left;flex:1;}
+.tk-norek{
+  font-family:var(--ff-serif);
+  font-size:clamp(17px,4.5vw,22px);
+  color:var(--txt);
+  font-weight:600;
+  letter-spacing:1.5px;
+  line-height:1.2;
+  margin-bottom:3px;
+}
+.tk-an{
+  font-family:var(--ff-body);
+  font-size:clamp(11px,2.8vw,13px);
+  color:var(--txt-mid);
+  font-weight:400;
+}
+.tk-copy-btn{
+  margin-top:14px;
+  width:100%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#fff;
+  border:none;
+  padding:clamp(11px,2.8vw,14px) 20px;
+  font-family:var(--ff-display);
+  font-size:clamp(10px,2.5vw,12px);
+  font-weight:600;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.tk-copy-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,0.2),transparent);
+  transform:translateX(-100%);transition:transform 0.4s;
+}
+.tk-copy-btn:hover::after{transform:translateX(100%);}
+.tk-copy-btn:active{transform:scale(0.97);}
+.tk-note{
+  margin-top:clamp(18px,4vw,24px);
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-size:clamp(11px,2.8vw,13px);
+  color:var(--gold);
+  opacity:0.85;
+  position:relative;z-index:1;
+  text-shadow:0 1px 8px rgba(255,252,248,0.9);
+}
+
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--cream);color:var(--gold);border:1px solid var(--gold-line);padding:11px 20px;font-family:var(--ff-display);font-size:12px;letter-spacing:2px;z-index:99999;opacity:0;transition:all 0.4s var(--ease);backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 24px rgba(184,149,90,0.2);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
@@ -947,6 +1066,32 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
+    <!-- TANDA KASIH -->
+    <section class="tk-section">
+      <div class="sec-ey reveal" style="margin-bottom:20px;">TANDA KASIH</div>
+      <div class="tk-oval-wrap reveal r1">
+        <div class="tk-oval"></div>
+
+        <p class="tk-title">Tanda Kasih</p>
+        <p class="tk-desc">Kehadiran dan doa restu Bapak/Ibu merupakan kebahagiaan bagi kami. Tanpa mengurangi rasa hormat, bagi yang berkenan memberikan tanda kasih, dapat melalui informasi berikut 🤲</p>
+
+        <div class="tk-card">
+          <div class="tk-bank-row">
+            <img src="bca.png" alt="BCA" class="tk-bank-logo">
+            <div class="tk-rekening">
+              <div class="tk-norek">1100600249</div>
+              <div class="tk-an">a/n Ilham Wijaya</div>
+            </div>
+          </div>
+          <button class="tk-copy-btn" onclick="copyRekening('1100600249')">
+            SALIN NOMOR REKENING
+          </button>
+        </div>
+
+        <p class="tk-note">Jazakumullahu Khairan Katsiran 🤍</p>
+      </div>
+    </section>
+
     <footer class="ft">
       <div class="ft-flower-tr"></div>
       <div class="ft-flower-lb"></div>
@@ -1234,6 +1379,18 @@ function submitRsvp(){
   gi('rsvp-ucapan').value='';
 }
 function toast(msg){const t=gi('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);}
+function copyRekening(norek){
+  navigator.clipboard.writeText(norek).then(()=>{
+    toast('✓ Nomor rekening disalin!');
+  }).catch(()=>{
+    // fallback untuk browser lama
+    const el=document.createElement('input');
+    el.value=norek;document.body.appendChild(el);
+    el.select();document.execCommand('copy');
+    document.body.removeChild(el);
+    toast('✓ Nomor rekening disalin!');
+  });
+}
 loadConfig();
 
 </script>
