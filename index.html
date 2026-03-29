@@ -251,27 +251,163 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 .orn::after{background:linear-gradient(to left,transparent,var(--gold-line));}
 .orn-diam{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:0.5;}
 
-/* MEMPELAI */
-.couple-wrap{display:flex;flex-direction:column;align-items:center;margin-top:32px;gap:0;position:relative;padding:60px 20px 60px;overflow:visible;}
-
-/* Oval emas CSS — auto-resize mengikuti konten */
-.couple-oval{
-  display:block;
-  position:absolute;
-  top:0;left:50%;
-  transform:translateX(-50%);
-  width:min(320px,82vw);
-  height:100%;
-  border:1.5px solid var(--gold2);
-  border-radius:50% / 8%;
-  pointer-events:none;
-  z-index:0;
-  box-shadow:0 0 0 1px var(--gold-faint),inset 0 0 40px rgba(184,149,90,0.04);
+/* MEMPELAI — HERO PHOTO */
+.sec-mempelai{
+  padding:0 !important;
+  background:none !important;
+  position:relative;
+  overflow:hidden;
 }
-.pcard-oval-wrap{position:relative;display:flex;flex-direction:column;align-items:center;z-index:1;overflow:visible;}
-.pcard-oval{display:none;}
-.pcard{padding:20px 24px 16px;text-align:center;position:relative;z-index:1;width:min(310px,80vw);overflow:visible;}
-.pcard::before{display:none;}
+.hero-label{
+  text-align:center;
+  padding:clamp(32px,7vw,56px) 20px clamp(16px,4vw,24px);
+  background:var(--cream2);
+}
+.hero-photo-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:3/4;
+  overflow:hidden;
+}
+.hero-photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  transition:transform 0.8s var(--ease);
+}
+.hero-photo-wrap:hover img{transform:scale(1.03);}
+
+/* Overlay gradient atas — gelap ke transparan */
+.hero-grad-top{
+  position:absolute;top:0;left:0;right:0;
+  height:35%;
+  background:linear-gradient(to bottom,rgba(44,32,24,0.45),transparent);
+  pointer-events:none;z-index:1;
+}
+/* Overlay gradient bawah — transparan ke gelap */
+.hero-grad-bot{
+  position:absolute;bottom:0;left:0;right:0;
+  height:55%;
+  background:linear-gradient(to top,rgba(44,32,24,0.72) 0%,rgba(44,32,24,0.35) 55%,transparent 100%);
+  pointer-events:none;z-index:1;
+}
+/* Teks nama di dalam foto (bawah) */
+.hero-names{
+  position:absolute;bottom:0;left:0;right:0;
+  z-index:2;
+  text-align:center;
+  padding:0 20px clamp(28px,6vw,44px);
+}
+.hero-names-inner{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+.hero-groom{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-size:clamp(26px,6.5vw,42px);
+  color:#fff;
+  line-height:1.1;
+  text-shadow:0 2px 16px rgba(0,0,0,0.5);
+  letter-spacing:0.5px;
+}
+.hero-amp{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-size:clamp(18px,4.5vw,28px);
+  color:var(--gold3);
+  line-height:1.2;
+  text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  margin:2px 0;
+}
+.hero-bride{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-size:clamp(26px,6.5vw,42px);
+  color:#fff;
+  line-height:1.1;
+  text-shadow:0 2px 16px rgba(0,0,0,0.5);
+  letter-spacing:0.5px;
+}
+/* Divider emas di dalam foto */
+.hero-divider{
+  display:flex;align-items:center;gap:10px;
+  margin:10px auto 14px;
+  width:min(200px,50vw);
+}
+.hero-divider span{flex:1;height:1px;background:rgba(212,175,114,0.7);}
+.hero-divider span:last-child{background:rgba(212,175,114,0.7);}
+.hero-divider-diam{width:5px;height:5px;background:var(--gold2);transform:rotate(45deg);flex-shrink:0;}
+
+/* Info orang tua — di bawah foto */
+.hero-info{
+  background:var(--cream2);
+  display:flex;
+  justify-content:center;
+  gap:0;
+  border-top:2px solid var(--gold-line);
+}
+.hero-info-card{
+  flex:1;
+  text-align:center;
+  padding:clamp(20px,5vw,32px) clamp(14px,4vw,28px);
+  position:relative;
+}
+.hero-info-card:first-child{
+  border-right:1px solid var(--gold-line);
+}
+.hero-info-card::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:40px;height:2px;
+  background:linear-gradient(to right,transparent,var(--gold2),transparent);
+}
+.hero-info-role{
+  font-family:var(--ff-display);
+  font-size:clamp(9px,2.2vw,11px);
+  letter-spacing:2.5px;
+  color:var(--gold);
+  opacity:0.8;
+  margin-bottom:5px;
+}
+.hero-info-name{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-size:clamp(15px,4vw,19px);
+  color:var(--txt);
+  margin-bottom:8px;
+  line-height:1.3;
+}
+.hero-info-par{
+  font-family:var(--ff-body);
+  font-size:clamp(11px,2.6vw,13px);
+  color:var(--txt-mid);
+  line-height:1.8;
+  font-weight:400;
+}
+.hero-info-par strong{color:var(--txt);font-weight:600;}
+.hero-ig-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;
+  text-decoration:none;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  color:#fff;
+  border-radius:20px;
+  padding:5px 12px 5px 8px;
+  font-family:var(--ff-display);
+  font-size:clamp(9px,2.2vw,10px);
+  letter-spacing:1.5px;
+  transition:transform 0.3s var(--spring),box-shadow 0.3s;
+  box-shadow:0 3px 10px rgba(188,24,136,0.3);
+}
+.hero-ig-btn img{width:14px;height:14px;filter:brightness(0) invert(1);}
+.hero-ig-btn:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 5px 16px rgba(188,24,136,0.45);}
+
+/* Sembunyikan elemen lama yang tidak dipakai */
+.couple-wrap,.couple-oval,.pcard-oval-wrap,.pcard,.pphoto-wrap,
+.pphoto,.pname,.prole,.ppar,.c-and,.ig-btn{display:none;}
 .pphoto{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;border:1px solid var(--gold-line);background:var(--cream3);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 6px 24px rgba(184,149,90,0.2),0 0 0 3px var(--gold-faint);transition:all 0.5s;}
 .pphoto:hover{box-shadow:0 10px 32px rgba(184,149,90,0.3),0 0 0 4px var(--gold-line);}
 .pphoto img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
@@ -744,7 +880,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 <!-- SAMPUL -->
 <div id="sampul-page" style="display:none">
   <div class="sampul-flower-lb"></div>
-  <p class="sp-label">UNDANGAN PERNIKAHAN</p>
+  <p class="sp-label">RESEPSI PERNIKAHAN</p>
   <div class="env-wrap">
     <div class="env-card">
       <div class="env-card-tr"></div>
@@ -755,7 +891,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
         <div class="enc-amp-row"><span class="enc-amp-line"></span><span class="enc-amp">&amp;</span><span class="enc-amp-line"></span></div>
         <span class="enc-nm" id="enc-bride">Adinda Salsabila</span>
       </div>
-      <div class="enc-date" id="enc-date">27 MARET 2026 &nbsp;·&nbsp; MAKASSAR</div>
+      <div class="enc-date" id="enc-date">2 APRIL 2026 &nbsp;·&nbsp; BULUKUMPA</div>
     </div>
     <div class="env-body">
       <div class="env-bg-fill">
@@ -879,7 +1015,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       <div class="cv-content">
         <p class="cv-bism">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
         <div class="cv-badges">
-          <span class="cv-badge">PERNIKAHAN</span><span class="cv-dot">◆</span>
+          <span class="cv-badge">RESEPSI PERNIKAHAN</span><span class="cv-dot">◆</span>
           <span class="cv-badge">KHITANAN</span><span class="cv-dot">◆</span>
           <span class="cv-badge">AQIQAH</span>
         </div>
@@ -888,7 +1024,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
         </div>
         <div class="cv-sep"><span class="cv-sep-line"></span><span class="cv-sep-diam"></span><span class="cv-sep-line"></span></div>
         <p class="cv-sub">Dirangkaikan dengan Khitanan &amp; Tasyakuran Aqiqah</p>
-        <p class="cv-date" id="cv-date">JUMAT, 27 MARET 2026</p>
+        <p class="cv-date" id="cv-date">KAMIS, 2 APRIL 2026</p>
       </div>
       <div class="cv-scroll"><div class="cv-scroll-lbl">SCROLL</div><div class="cv-scroll-track"><div class="cv-scroll-dot"></div></div></div>
     </section>
@@ -903,38 +1039,59 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 
     <section class="sec alt sec-mempelai">
       <div class="sec-flower-l"></div>
-      <div class="sec-ey reveal">MEMPELAI</div>
-      <h2 class="sec-h reveal r1">Akan Melangsungkan Pernikahan</h2>
-      <div class="couple-wrap reveal r2">
-        <div class="couple-oval"></div>
-        <div class="pcard-oval-wrap">
-          <div class="pcard">
-            <div class="pphoto-wrap">
-              <div class="pphoto" id="cphoto-groom"><span class="pem">🤵</span></div>
-              <a class="ig-btn" href="https://www.instagram.com/ilham_wiijaya" target="_blank" rel="noopener" title="Instagram">
-                <img src="iconig.png" alt="Instagram">
-              </a>
-            </div>
-            <div class="pname" id="d-groom"></div>
-            <div class="prole" id="d-groom-sub"></div>
-            <div class="ppar">Putra dari<br><strong id="d-groom-ayah"></strong><br>&amp; <strong id="d-groom-ibu"></strong></div>
-          </div>
-        </div>
-        <div class="c-and">&amp;</div>
-        <div class="pcard-oval-wrap">
-          <div class="pcard">
-            <div class="pphoto-wrap">
-              <div class="pphoto" id="cphoto-bride"><span class="pem">👰</span></div>
-              <a class="ig-btn" href="https://www.instagram.com/dndsabilah" target="_blank" rel="noopener" title="Instagram">
-                <img src="iconig.png" alt="Instagram">
-              </a>
-            </div>
-            <div class="pname" id="d-bride"></div>
-            <div class="prole" id="d-bride-sub"></div>
-            <div class="ppar">Putri dari<br><strong id="d-bride-ayah"></strong><br>&amp; <strong id="d-bride-ibu"></strong></div>
+
+      <!-- Label atas -->
+      <div class="hero-label">
+        <div class="sec-ey reveal">MEMPELAI</div>
+        <h2 class="sec-h reveal r1">Mengundang Kehadiran Anda</h2>
+      </div>
+
+      <!-- Foto hero full-width -->
+      <div class="hero-photo-wrap reveal r2">
+        <img src="berdua.png" alt="Ilham & Adinda"
+          onerror="this.style.display='none';this.parentElement.style.background='var(--cream3)'">
+        <div class="hero-grad-top"></div>
+        <div class="hero-grad-bot"></div>
+        <div class="hero-names">
+          <div class="hero-names-inner">
+            <div class="hero-groom" id="d-groom">Ilham Wijaya</div>
+            <div class="hero-amp">&amp;</div>
+            <div class="hero-bride" id="d-bride">Adinda Salsabila</div>
+            <div class="hero-divider"><span></span><div class="hero-divider-diam"></div><span></span></div>
           </div>
         </div>
       </div>
+
+      <!-- Info orang tua — di bawah foto -->
+      <div class="hero-info reveal r3">
+        <!-- Mempelai Pria -->
+        <div class="hero-info-card">
+          <div class="hero-info-role">MEMPELAI PRIA</div>
+          <div class="hero-info-name" id="d-groom2">Ilham Wijaya</div>
+          <div class="hero-info-par">
+            Putra ke-<span id="d-groom-ke2">5</span> dari<br>
+            <strong id="d-groom-ayah2"></strong><br>
+            &amp; <strong id="d-groom-ibu2"></strong>
+          </div>
+          <a class="hero-ig-btn" href="https://www.instagram.com/ilham_wiijaya" target="_blank" rel="noopener">
+            <img src="iconig.png" alt="ig"> INSTAGRAM
+          </a>
+        </div>
+        <!-- Mempelai Wanita -->
+        <div class="hero-info-card">
+          <div class="hero-info-role">MEMPELAI WANITA</div>
+          <div class="hero-info-name" id="d-bride2">Adinda Salsabila</div>
+          <div class="hero-info-par">
+            Putri ke-<span id="d-bride-ke2">3</span> dari<br>
+            <strong id="d-bride-ayah2"></strong><br>
+            &amp; <strong id="d-bride-ibu2"></strong>
+          </div>
+          <a class="hero-ig-btn" href="https://www.instagram.com/dndsabilah" target="_blank" rel="noopener">
+            <img src="iconig.png" alt="ig"> INSTAGRAM
+          </a>
+        </div>
+      </div>
+
     </section>
 
     <section class="sec sec-bg2">
@@ -983,28 +1140,13 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       </div>
     </section>
 
-    <section class="sec alt sec-bg2">
-      <div class="sec-flower-l"></div>
-      <div class="sec-ey reveal">JADWAL ACARA</div>
-      <h2 class="sec-h reveal r1">Akad Nikah</h2>
-      <div class="evt-single reveal r2"><div class="evt-card">
-        <div class="evt-ico">💍</div><div class="evt-type">AKAD NIKAH</div>
-        <div class="evt-row"><div class="evt-lbl">HARI &amp; TANGGAL</div><div class="evt-val" id="d-akad-date"></div></div>
-        <div class="orn" style="margin:10px auto;"><div class="orn-diam"></div></div>
-        <div class="evt-row"><div class="evt-lbl">WAKTU</div><div class="evt-val" id="d-akad-time"></div></div>
-        <div class="orn" style="margin:10px auto;"><div class="orn-diam"></div></div>
-        <div class="evt-row"><div class="evt-lbl">TEMPAT</div><div class="evt-val" id="d-akad-place"></div></div>
-        <div class="evt-row"><div class="evt-lbl">ALAMAT</div><div class="evt-val-sm" id="d-akad-addr"></div></div>
-        <a id="d-akad-maps" href="#" target="_blank" class="evt-map">🗺 LIHAT LOKASI</a>
-      </div></div>
-    </section>
-
     <section class="sec sec-bg2">
       <div class="sec-flower-r"></div>
       <div class="sec-ey reveal">JADWAL ACARA</div>
       <h2 class="sec-h reveal r1">Resepsi &amp; Rangkaian Acara</h2>
       <div class="evt-single reveal r2"><div class="evt-card">
-        <div class="evt-ico">🎊</div><div class="evt-type">RESEPSI &nbsp;·&nbsp; KHITANAN &nbsp;·&nbsp; AQIQAH</div>
+        <div class="evt-ico">🎊</div>
+        <div class="evt-type">RESEPSI &nbsp;·&nbsp; KHITANAN &nbsp;·&nbsp; AQIQAH</div>
         <div class="evt-row"><div class="evt-lbl">HARI &amp; TANGGAL</div><div class="evt-val" id="d-res-date"></div></div>
         <div class="orn" style="margin:10px auto;"><div class="orn-diam"></div></div>
         <div class="evt-row"><div class="evt-lbl">WAKTU</div><div class="evt-val" id="d-res-time"></div></div>
@@ -1019,16 +1161,8 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       <div class="sec-flower-l"></div>
       <div class="sec-ey reveal">HITUNG MUNDUR</div>
       <div class="reveal r1" style="text-align:center;">
-        <div class="cd-header-wrap">
-          <h2 class="sec-h" style="margin:0;">Menuju Hari Bahagia</h2>
-          <button class="cd-switch-btn" id="cd-switch-btn" onclick="switchCountdown()" title="Ganti countdown">
-            <img src="switch.png" alt="switch" id="cd-switch-icon">
-          </button>
-        </div>
-        <div class="cd-mode-wrap" style="margin-top:6px;margin-bottom:2px;">
-          <span class="cd-mode-lbl active" id="cd-lbl-akad">AKAD NIKAH</span>
-          <span class="cd-mode-lbl exit-down" id="cd-lbl-res">RESEPSI</span>
-        </div>
+        <h2 class="sec-h" style="margin:0 0 6px;">Menuju Hari Resepsi</h2>
+        <div style="font-family:var(--ff-display);font-size:11px;letter-spacing:3px;color:var(--gold);opacity:0.75;">KAMIS, 2 APRIL 2026</div>
       </div>
       <div class="cd-wrap reveal r2" id="cd-wrap">
         <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">HARI</span></div>
@@ -1112,7 +1246,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
 
 const ADMIN_KEY='MODEADMIN01';
 let C={},isAdmin=false,musicPlaying=false;
-let cdTarget=new Date('2026-03-27T15:30:00'),cdResTarget=new Date('2026-04-02T09:00:00'),cdMode='akad',envOpened=false;
+let cdResTarget=new Date('2026-04-02T09:00:00'),envOpened=false;
 const gi=id=>document.getElementById(id);
 const st=(id,v)=>{const e=gi(id);if(e)e.textContent=v;};
 const sh=(id,v)=>{const e=gi(id);if(e)e.href=v;};
@@ -1174,18 +1308,18 @@ function applyConfig(){
   const M=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const fmt=s=>{if(!s)return'';const d=new Date(s+'T00:00:00');return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;};
   st('enc-groom',C.groom_nama);st('enc-bride',C.bride_nama);
-  const akadD=new Date(C.akad_tanggal+'T00:00:00');
-  gi('enc-date').textContent=`${akadD.getDate()} ${M[akadD.getMonth()]} ${akadD.getFullYear()} · MAKASSAR`;
+  const resD=new Date(C.resepsi_tanggal+'T00:00:00');
+  gi('enc-date').textContent=`${resD.getDate()} ${M[resD.getMonth()]} ${resD.getFullYear()} · BULUKUMPA`;
   gi('seal-g').textContent=C.groom_nama.charAt(0).toUpperCase();
   gi('seal-b').textContent=C.bride_nama.charAt(0).toUpperCase();
   st('cv-groom',C.groom_nama);st('cv-bride',C.bride_nama);
-  st('cv-date',fmt(C.akad_tanggal).toUpperCase());
-  st('d-groom',C.groom_nama);st('d-groom-sub','PUTRA KE-'+C.groom_putra_ke);
-  st('d-groom-ayah',C.groom_ayah);st('d-groom-ibu',C.groom_ibu);
-  st('d-bride',C.bride_nama);st('d-bride-sub','PUTRI KE-'+C.bride_putri_ke);
-  st('d-bride-ayah',C.bride_ayah);st('d-bride-ibu',C.bride_ibu);
-  gi('cphoto-groom').innerHTML=`<img src="${C.groom_foto||'ilham.png'}" onerror="this.parentElement.innerHTML='<span class=pem>🤵</span>'">`;
-  gi('cphoto-bride').innerHTML=`<img src="${C.bride_foto||'adinda.png'}" onerror="this.parentElement.innerHTML='<span class=pem>👰</span>'">`;
+  st('cv-date',fmt(C.resepsi_tanggal).toUpperCase());
+  // Hero mempelai
+  st('d-groom',C.groom_nama);st('d-bride',C.bride_nama);
+  st('d-groom2',C.groom_nama);st('d-groom-ke2',C.groom_putra_ke);
+  st('d-groom-ayah2',C.groom_ayah);st('d-groom-ibu2',C.groom_ibu);
+  st('d-bride2',C.bride_nama);st('d-bride-ke2',C.bride_putri_ke);
+  st('d-bride-ayah2',C.bride_ayah);st('d-bride-ibu2',C.bride_ibu);
   st('d-akad-date',fmt(C.akad_tanggal));st('d-akad-time',C.akad_waktu);
   st('d-akad-place',C.akad_tempat);st('d-akad-addr',C.akad_alamat);sh('d-akad-maps',C.akad_maps);
   st('d-res-date',fmt(C.resepsi_tanggal));st('d-res-time',C.resepsi_waktu);
@@ -1248,49 +1382,13 @@ function initInvitation(){
 }
 
 function tick(){
-  const target=cdMode==='resepsi'?cdResTarget:cdTarget;
-  const diff=target-new Date();
+  const diff=cdResTarget-new Date();
   if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>st(id,'00'));return;}
   const pad=n=>String(n).padStart(2,'0');
   st('cd-d',pad(Math.floor(diff/86400000)));
   st('cd-h',pad(Math.floor(diff%86400000/3600000)));
   st('cd-m',pad(Math.floor(diff%3600000/60000)));
   st('cd-s',pad(Math.floor(diff%60000/1000)));
-}
-
-function switchCountdown(){
-  const btn=gi('cd-switch-btn');
-  const icon=gi('cd-switch-icon');
-  const lblAkad=gi('cd-lbl-akad');
-  const lblRes=gi('cd-lbl-res');
-  const wrap=gi('cd-wrap');
-
-  // Spin tombol
-  btn.classList.remove('spin');
-  void btn.offsetWidth;
-  btn.classList.add('spin');
-  setTimeout(()=>btn.classList.remove('spin'),700);
-
-  // Fade angka
-  wrap.classList.add('fading');
-
-  if(cdMode==='akad'){
-    cdMode='resepsi';
-    // AKAD keluar ke atas, RESEPSI masuk dari bawah
-    lblAkad.className='cd-mode-lbl exit-up';
-    lblRes.className='cd-mode-lbl exit-down';
-    void lblRes.offsetWidth;
-    setTimeout(()=>{ lblRes.className='cd-mode-lbl active'; },30);
-  } else {
-    cdMode='akad';
-    // RESEPSI keluar ke bawah, AKAD masuk dari atas
-    lblRes.className='cd-mode-lbl exit-down';
-    lblAkad.className='cd-mode-lbl exit-up';
-    void lblAkad.offsetWidth;
-    setTimeout(()=>{ lblAkad.className='cd-mode-lbl active'; },30);
-  }
-
-  setTimeout(()=>wrap.classList.remove('fading'),350);
 }
 
 function toggleMusic(){
