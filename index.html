@@ -13,9 +13,9 @@
 <meta property="og:url" content="https://undangan-digital-gilt.vercel.app/">
 <meta property="og:title" content="Undangan Resepsi — Ilham & Adinda">
 <meta property="og:description" content="Kami mengundang kehadiran Bapak/Ibu/Saudara/i di Resepsi Pernikahan kami. Kamis, 2 April 2026 · Lempangan, Bulukumpa.">
-<meta property="og:image" content="https://undangan-digital-gilt.vercel.app/preview.png">
-<meta property="og:image:width" content="600">
-<meta property="og:image:height" content="600">
+<meta property="og:image" content="https://undangan-digital-gilt.vercel.app/berdua.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="Undangan Digital Ilham & Adinda">
 
@@ -1044,7 +1044,6 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
           <h1><span id="cv-groom">Ilham Wijaya</span><span class="cv-amp">&amp;</span><span class="cv-n2" id="cv-bride">Adinda Salsabila</span></h1>
         </div>
         <div class="cv-sep"><span class="cv-sep-line"></span><span class="cv-sep-diam"></span><span class="cv-sep-line"></span></div>
-        <p class="cv-sub">Dirangkaikan dengan Khitanan &amp; Tasyakuran Aqiqah</p>
         <p class="cv-date" id="cv-date">KAMIS, 2 APRIL 2026</p>
       </div>
       <div class="cv-scroll"><div class="cv-scroll-lbl">SCROLL</div><div class="cv-scroll-track"><div class="cv-scroll-dot"></div></div></div>
@@ -1254,7 +1253,7 @@ body{background:var(--cream);font-family:var(--ff-body);color:var(--txt);overflo
       <div class="ft-name reveal r1" id="d-family"></div>
       <div class="ft-orn reveal r2"><span></span><div class="ft-gem"></div><span></span></div>
       <div class="ft-inv reveal r2">TURUT MENGUNDANG</div>
-      <div class="ft-guests reveal r3">Keluarga Besar Bapak Manto (Alm)<br>Keluarga Besar Ibu Hufra<br>Kedua Mempelai<br>Yuliana</div>
+      <div class="ft-guests reveal r3">Keluarga Besar Bapak Manto (Alm)<br>Keluarga Besar Ibu Hufra<br>Yuliana<br>Kedua Mempelai</div>
       <div class="ft-sal reveal r4">Wassalamu'alaikum Warahmatullahi Wabarakatuh</div>
     </footer>
   </div>
@@ -1332,7 +1331,7 @@ function applyConfig(){
   const resD=new Date(C.resepsi_tanggal+'T00:00:00');
   gi('enc-date').textContent=`${resD.getDate()} ${M[resD.getMonth()]} ${resD.getFullYear()} · BULUKUMPA`;
   gi('seal-g').textContent=C.groom_nama.charAt(0).toUpperCase();
-  gi('seal-b').textContent=C.bride_nama.charAt(0).toUpperCase();
+  gi('seal-b').textContent='S';
   st('cv-groom',C.groom_nama);st('cv-bride',C.bride_nama);
   st('cv-date',fmt(C.resepsi_tanggal).toUpperCase());
   // Hero mempelai
